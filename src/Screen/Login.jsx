@@ -3,25 +3,26 @@ import swal from 'sweetalert'
 import { Link, useNavigate } from 'react-router-dom'
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import { initializeApp } from "firebase/app";
-import { doc, getDoc, getFirestore } from "firebase/firestore";
-import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+    app,
+    auth,
+    db,
+    firebaseConfig,
+    signInWithEmailAndPassword,
+    doc,
+    setDoc,
+    initializeApp,
+    getDoc,
+    getAuth
+} from '../Firebase/Firebase'
 
-function Login({value}) {
+
+function Login({ value }) {
     const [password, setPassword] = useState("")
     const [email, setEmail] = useState("")
     const navigate = useNavigate()
-    const firebaseConfig = {
-        apiKey: "AIzaSyCvyu3enxTv2nFN4pYr-eU0zmFsjmfEHLk",
-        authDomain: "react-chat-app-b258c.firebaseapp.com",
-        projectId: "react-chat-app-b258c",
-        storageBucket: "react-chat-app-b258c.appspot.com",
-        messagingSenderId: "501765988231",
-        appId: "1:501765988231:web:489345ce7ef6f757b97d22",
-        measurementId: "G-XGRW7M7HP7"
-    };
+   
     const app = initializeApp(firebaseConfig);
-    const db = getFirestore()
     let name;
     const LoginForm = () => {
         const auth = getAuth();

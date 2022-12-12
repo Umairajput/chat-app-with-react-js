@@ -3,27 +3,24 @@ import swal from 'sweetalert'
 import { Link } from 'react-router-dom'
 import TextField from '@mui/material/TextField';
 import Box from '@mui/material/Box';
-import { doc, setDoc, getFirestore } from "firebase/firestore";
-import { initializeApp } from "firebase/app";
-import { getAuth, createUserWithEmailAndPassword } from "firebase/auth";
+
+import {
+    app,
+    auth,
+    db,
+    firebaseConfig,
+    createUserWithEmailAndPassword,
+    doc,
+    setDoc,
+    initializeApp
+} from '../Firebase/Firebase'
 
 function Signup() {
     const [name, setName] = useState("")
     const [number, setNumber] = useState()
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
-    const firebaseConfig = {
-        apiKey: "AIzaSyCvyu3enxTv2nFN4pYr-eU0zmFsjmfEHLk",
-        authDomain: "react-chat-app-b258c.firebaseapp.com",
-        projectId: "react-chat-app-b258c",
-        storageBucket: "react-chat-app-b258c.appspot.com",
-        messagingSenderId: "501765988231",
-        appId: "1:501765988231:web:489345ce7ef6f757b97d22",
-        measurementId: "G-XGRW7M7HP7"
-    };
     const app = initializeApp(firebaseConfig);
-    const auth = getAuth();
-    const db = getFirestore();
     const Register = () => {
         createUserWithEmailAndPassword(auth, email, password)
             .then(async (userCredential) => {
